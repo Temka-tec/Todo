@@ -14,7 +14,7 @@ export const Todo = () => {
   const filteredTodos = todos.filter((todo) => {
     if (tab === "Active") return !todo.completed;
     if (tab === "Complete") return todo.completed;
-    return true; // All
+    return true;
   });
 
   const addTodo = () => {
@@ -54,7 +54,7 @@ export const Todo = () => {
         </CardHeader>
 
         <CardContent>
-          {/* Tabs */}
+         
           <div className="flex mb-4">
             {tabOptions.map((t) => (
               <Button
@@ -68,7 +68,7 @@ export const Todo = () => {
             ))}
           </div>
 
-          {/* Todo list */}
+          
           <div className="flex flex-col gap-2">
             {filteredTodos.map((todo, index) => (
               <label key={index} className="flex items-center gap-2">
