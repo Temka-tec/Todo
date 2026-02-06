@@ -27,6 +27,11 @@ export const Todo = () => {
     setValue("");
   };
 
+  const removeTodo = (index) => {
+  setTodos(todos.filter((_, i) => i !== index));
+};
+
+
   const toggleTodo = (index) => {
     setTodos(
       todos.map((todo, i) =>
@@ -70,21 +75,32 @@ export const Todo = () => {
 
           
           <div className="flex flex-col gap-2">
-            {filteredTodos.map((todo, index) => (
-              <label key={index} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={() => toggleTodo(index)}
-                />
-                <span
-                  className={todo.completed ? "line-through text-gray-400" : ""}
-                >
-                  {todo.text}
-                </span>
-              </label>
-            ))}
-          </div>
+  {filteredTodos.map((todo, index) => (
+    <div key={index} className="flex items-center justify-between gap-2 border p-2 rounded">
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => toggleTodo(index)}
+        />
+        <span
+          className={todo.completed ? "line-through text-gray-400" : ""}
+        >
+          {todo.text}
+        </span>
+      </label>
+
+      <Button
+        variant="destructive"
+        size="sm"
+        onClick={() => removeTodo(index)}
+      >
+        Delete
+      </Button>
+    </div>
+  ))}
+</div>
+
         </CardContent>
 
         <CardDescription className="text-center py-3">
